@@ -26,8 +26,17 @@ app.get('/api/hello', function (req, res) {
 
 // second api endpoint
 app.get('/api/whoami', (req, res) => {
-  const x = req.query.ip;
-  console.log(x);
+  
+  const ip = req.headers.host;
+  const sw = req.headers["user-agent"];
+  const lang = req.headers["accept-language"];
+  // console.log(ip, sw, lang);
+
+  res.json({
+    ipaddress: ip,
+    language: lang,
+    software: sw
+  });
 })
 
 // listen for requests :)
